@@ -47,4 +47,5 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.4'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.0'
     implementation 'com.github.kirich1409:viewbindingpropertydelegate:1.5.6'
+    implementation "com.arkivanov.mvikotlin:mvikotlin:3.0.2"
 }

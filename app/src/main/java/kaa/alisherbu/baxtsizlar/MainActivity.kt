@@ -5,9 +5,16 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.WindowCompat
 
 class MainActivity : AppCompatActivity(R.layout.activity_main) {
-
     override fun onCreate(savedInstanceState: Bundle?) {
         WindowCompat.setDecorFitsSystemWindows(window, false)
         super.onCreate(savedInstanceState)
+        if (savedInstanceState == null) {
+            supportFragmentManager
+                .beginTransaction()
+                .add(R.id.content_container, rootFragment())
+                .commit()
+        }
     }
+
+    fun rootFragment() = RootFragment()
 }
