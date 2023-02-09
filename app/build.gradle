@@ -48,4 +48,8 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.0'
     implementation 'com.github.kirich1409:viewbindingpropertydelegate:1.5.6'
     implementation "com.arkivanov.mvikotlin:mvikotlin:3.0.2"
+    implementation "com.arkivanov.mvikotlin:mvikotlin-extensions-coroutines:3.0.2"
+    implementation "com.arkivanov.mvikotlin:mvikotlin-main:3.0.2"
+    implementation "com.arkivanov.mvikotlin:mvikotlin-logging:3.0.2"
+    implementation "com.arkivanov.mvikotlin:mvikotlin-timetravel:3.0.2"
 }

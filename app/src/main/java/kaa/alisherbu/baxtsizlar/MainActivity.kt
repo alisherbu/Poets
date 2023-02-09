@@ -16,5 +16,8 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
         }
     }
 
-    fun rootFragment() = RootFragment()
+    private fun rootFragment() = RootFragment(
+        storeFactoryInstance,
+        DefaultDispatchers
+    )
 }
