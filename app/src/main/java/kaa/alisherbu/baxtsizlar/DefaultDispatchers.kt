@@ -1,5 +1,6 @@
 package kaa.alisherbu.baxtsizlar
 
+import kaa.alisherbu.baxtsizlar.poets.PoetDispatchers
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 

@@ -1,10 +1,11 @@
-package kaa.alisherbu.baxtsizlar
+package kaa.alisherbu.baxtsizlar.poets
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import kaa.alisherbu.baxtsizlar.R
 
 class PoetsAdapter : RecyclerView.Adapter<PoetsAdapter.PoetListViewHolder>() {
     inner class PoetListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {

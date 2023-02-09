@@ -1,4 +1,4 @@
-package kaa.alisherbu.baxtsizlar
+package kaa.alisherbu.baxtsizlar.poets
 
 import kotlinx.coroutines.CoroutineDispatcher
 

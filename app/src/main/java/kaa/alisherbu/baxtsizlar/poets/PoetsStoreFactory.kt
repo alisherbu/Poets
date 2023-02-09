@@ -1,12 +1,12 @@
-package kaa.alisherbu.baxtsizlar
+package kaa.alisherbu.baxtsizlar.poets
 
 import com.arkivanov.mvikotlin.core.store.Reducer
 import com.arkivanov.mvikotlin.core.store.SimpleBootstrapper
 import com.arkivanov.mvikotlin.core.store.Store
 import com.arkivanov.mvikotlin.core.store.StoreFactory
 import com.arkivanov.mvikotlin.extensions.coroutines.CoroutineExecutor
-import kaa.alisherbu.baxtsizlar.PoetsStore.Intent
-import kaa.alisherbu.baxtsizlar.PoetsStore.State
+import kaa.alisherbu.baxtsizlar.poets.PoetsStore.Intent
+import kaa.alisherbu.baxtsizlar.poets.PoetsStore.State
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import kotlin.coroutines.CoroutineContext
@@ -21,7 +21,7 @@ class PoetsStoreFactory(
             name = "PoetsStore",
             initialState = State(),
             bootstrapper = SimpleBootstrapper(Unit),
-            executorFactory = ::ExecutorImpl,
+            executorFactory = this::ExecutorImpl,
             reducer = ReducerImpl,
         ) {}
 
@@ -41,7 +41,7 @@ class PoetsStoreFactory(
 
     private object ReducerImpl : Reducer<State, Message> {
         override fun State.reduce(msg: Message): State {
-            return when(msg){
+            return when (msg) {
                 is Message.Loaded -> copy(poets = msg.poets)
             }
         }

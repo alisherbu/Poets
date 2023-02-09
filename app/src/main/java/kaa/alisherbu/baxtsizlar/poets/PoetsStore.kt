@@ -1,8 +1,8 @@
-package kaa.alisherbu.baxtsizlar
+package kaa.alisherbu.baxtsizlar.poets
 
 import com.arkivanov.mvikotlin.core.store.Store
-import kaa.alisherbu.baxtsizlar.PoetsStore.Intent
-import kaa.alisherbu.baxtsizlar.PoetsStore.State
+import kaa.alisherbu.baxtsizlar.poets.PoetsStore.Intent
+import kaa.alisherbu.baxtsizlar.poets.PoetsStore.State
 
 interface PoetsStore : Store<Intent, State, Nothing> {
     sealed interface Intent

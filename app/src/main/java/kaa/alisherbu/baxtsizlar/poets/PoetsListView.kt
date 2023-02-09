@@ -1,10 +1,10 @@
-package kaa.alisherbu.baxtsizlar
+package kaa.alisherbu.baxtsizlar.poets
 
 import android.view.View
-import android.widget.Toast
 import com.arkivanov.mvikotlin.core.utils.diff
 import com.arkivanov.mvikotlin.core.view.BaseMviView
 import com.arkivanov.mvikotlin.core.view.ViewRenderer
+import kaa.alisherbu.baxtsizlar.Event
 import kaa.alisherbu.baxtsizlar.databinding.FragmentPoetsBinding
 
 

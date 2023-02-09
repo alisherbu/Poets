@@ -1,4 +1,4 @@
-package kaa.alisherbu.baxtsizlar
+package kaa.alisherbu.baxtsizlar.poets
 
 import android.os.Bundle
 import android.view.View
@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import com.arkivanov.essenty.instancekeeper.instanceKeeper
 import com.arkivanov.essenty.lifecycle.essentyLifecycle
 import com.arkivanov.mvikotlin.core.store.StoreFactory
+import kaa.alisherbu.baxtsizlar.R
 
 class PoetsFragment(
     private val storeFactory: StoreFactory,

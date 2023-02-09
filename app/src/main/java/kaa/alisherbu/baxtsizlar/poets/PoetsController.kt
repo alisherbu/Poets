@@ -1,4 +1,4 @@
-package kaa.alisherbu.baxtsizlar
+package kaa.alisherbu.baxtsizlar.poets
 
 import com.arkivanov.essenty.instancekeeper.InstanceKeeper
 import com.arkivanov.essenty.lifecycle.Lifecycle
@@ -8,7 +8,8 @@ import com.arkivanov.mvikotlin.core.store.StoreFactory
 import com.arkivanov.mvikotlin.extensions.coroutines.bind
 import com.arkivanov.mvikotlin.extensions.coroutines.events
 import com.arkivanov.mvikotlin.extensions.coroutines.states
-import kotlinx.coroutines.flow.combine
+import kaa.alisherbu.baxtsizlar.eventToListIntent
+import kaa.alisherbu.baxtsizlar.statesToList
 import kotlinx.coroutines.flow.mapNotNull
 
 class PoetsController(
