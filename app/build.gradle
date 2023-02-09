@@ -52,5 +52,5 @@ dependencies {
     implementation "com.arkivanov.mvikotlin:mvikotlin-logging:3.0.2"
     implementation "com.arkivanov.mvikotlin:mvikotlin-timetravel:3.0.2"
     implementation "com.github.terrakok:cicerone:7.1"
-    implementation "io.insert-koin:koin-core:3.3.3"
+    implementation "io.insert-koin:koin-android:3.3.3"
 }
