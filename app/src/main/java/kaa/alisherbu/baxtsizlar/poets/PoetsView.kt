@@ -8,7 +8,7 @@ import kaa.alisherbu.baxtsizlar.Event
 import kaa.alisherbu.baxtsizlar.databinding.FragmentPoetsBinding
 
 
-class PoetsListView(root: View) : BaseMviView<List<Poet>, Event>() {
+class PoetsView(root: View) : BaseMviView<List<Poet>, Event>() {
     private val binding = FragmentPoetsBinding.bind(root)
     private val poetsAdapter = PoetsAdapter()
 

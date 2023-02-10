@@ -22,7 +22,7 @@ class PoetsController(
         PoetsStoreFactory(storeFactory, dispatchers.main, dispatchers.io).create()
     }
 
-    fun onViewCreated(view: PoetsListView, viewLifecycle: Lifecycle) {
+    fun onViewCreated(view: PoetsView, viewLifecycle: Lifecycle) {
         bind(viewLifecycle, BinderLifecycleMode.CREATE_DESTROY, dispatchers.unconfined) {
             view.events.mapNotNull(eventToListIntent) bindTo poetsStore
         }

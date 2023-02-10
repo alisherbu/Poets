@@ -6,12 +6,12 @@ import androidx.fragment.app.Fragment
 import com.arkivanov.essenty.instancekeeper.instanceKeeper
 import com.arkivanov.essenty.lifecycle.essentyLifecycle
 import com.arkivanov.mvikotlin.core.store.StoreFactory
+import kaa.alisherbu.baxtsizlar.DefaultDispatchers
 import kaa.alisherbu.baxtsizlar.R
+import org.koin.android.ext.android.inject
 
-class PoetsFragment(
-    private val storeFactory: StoreFactory,
-    private val dispatchers: PoetDispatchers,
-) : Fragment(R.layout.fragment_poets) {
+class PoetsFragment : Fragment(R.layout.fragment_poets) {
+    private val storeFactory: StoreFactory by inject()
     private lateinit var controller: PoetsController
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -19,13 +19,13 @@ class PoetsFragment(
             storeFactory,
             essentyLifecycle(),
             instanceKeeper(),
-            dispatchers
+            DefaultDispatchers
         )
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val poetsListView = PoetsListView(view)
+        val poetsListView = PoetsView(view)
         controller.onViewCreated(poetsListView, viewLifecycleOwner.essentyLifecycle())
     }
 }

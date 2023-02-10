@@ -7,6 +7,7 @@ import com.github.terrakok.cicerone.Command
 import com.github.terrakok.cicerone.Navigator
 import com.github.terrakok.cicerone.NavigatorHolder
 import com.github.terrakok.cicerone.Replace
+import com.github.terrakok.cicerone.Router
 import com.github.terrakok.cicerone.androidx.AppNavigator
 import com.github.terrakok.cicerone.androidx.FragmentScreen
 import org.koin.android.ext.android.inject
@@ -15,12 +16,13 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
 
     private val navigator: Navigator  = AppNavigator(this, R.id.content_container)
     private val navigatorHolder: NavigatorHolder by inject()
+    private val router: Router by inject()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         WindowCompat.setDecorFitsSystemWindows(window, false)
         super.onCreate(savedInstanceState)
         if (savedInstanceState == null) {
-            navigator.applyCommands(arrayOf<Command>(Replace(rootScreen())))
+            router.replaceScreen(rootScreen())
         }
     }
 
@@ -35,10 +37,7 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
 
     }
 
-    private fun rootFragment() = RootFragment(
-        storeFactoryInstance,
-        DefaultDispatchers
-    )
+    private fun rootFragment() = RootFragment()
 
     private fun rootScreen() = FragmentScreen {
         rootFragment()
