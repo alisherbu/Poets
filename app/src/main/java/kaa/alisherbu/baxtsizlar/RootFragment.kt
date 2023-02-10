@@ -19,7 +19,7 @@ class RootFragment : Fragment(R.layout.fragment_root) {
         super.onCreate(savedInstanceState)
         navigator = AppNavigator(requireActivity(), R.id.root_container, childFragmentManager)
         if (savedInstanceState == null) {
-            navigator.applyCommands(arrayOf<Command>(Replace(mainScreen())))
+            navigator.applyCommands(arrayOf<Command>(Replace(Screen.Main())))
         }
     }
 

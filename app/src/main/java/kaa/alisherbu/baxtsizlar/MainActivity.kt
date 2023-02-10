@@ -22,7 +22,7 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
         WindowCompat.setDecorFitsSystemWindows(window, false)
         super.onCreate(savedInstanceState)
         if (savedInstanceState == null) {
-            router.replaceScreen(rootScreen())
+            router.replaceScreen(Screen.Root())
         }
     }
 
@@ -35,11 +35,5 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
         navigatorHolder.removeNavigator()
         super.onPause()
 
-    }
-
-    private fun rootFragment() = RootFragment()
-
-    private fun rootScreen() = FragmentScreen {
-        rootFragment()
     }
 }

@@ -7,6 +7,7 @@ import com.arkivanov.mvikotlin.core.store.StoreFactory
 import com.arkivanov.mvikotlin.logging.store.LoggingStoreFactory
 import com.arkivanov.mvikotlin.main.store.DefaultStoreFactory
 import com.arkivanov.mvikotlin.timetravel.store.TimeTravelStoreFactory
+import kaa.alisherbu.baxtsizlar.poets.Event
 import kaa.alisherbu.baxtsizlar.poets.Poet
 import kaa.alisherbu.baxtsizlar.poets.PoetsStore
 
