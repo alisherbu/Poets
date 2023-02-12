@@ -1,24 +1,24 @@
-package kaa.alisherbu.baxtsizlar.poets
+package kaa.alisherbu.baxtsizlar.bio
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.fragment.app.Fragment
-import com.arkivanov.essenty.lifecycle.essentyLifecycle
 import kaa.alisherbu.baxtsizlar.R
 import kaa.alisherbu.baxtsizlar.navigation.BackButtonListener
-import org.koin.androidx.viewmodel.ext.android.viewModel
+import org.koin.android.ext.android.inject
 
-class PoetsFragment : Fragment(R.layout.fragment_poets), BackButtonListener {
-    private val viewModel: PoetsViewModel by viewModel()
 
+class BiographyFragment : Fragment(R.layout.fragment_biography), BackButtonListener {
+    private val viewModel: BiographyViewModel by inject()
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val poetsListView = PoetsView(view)
-        viewModel.onViewCreated(poetsListView, essentyLifecycle())
+        Log.d("NavLog", "onViewCreated, BiographyFragment")
     }
-
     override fun onBackPressed(): Boolean {
+        Log.d("NavLog", "onBackPressed, BiographyFragment")
         viewModel.onBackPressed()
         return true
     }
+
 }

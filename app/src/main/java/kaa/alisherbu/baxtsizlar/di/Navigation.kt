@@ -1,14 +1,22 @@
 package kaa.alisherbu.baxtsizlar.di
 
-import com.github.terrakok.cicerone.Cicerone
-import com.github.terrakok.cicerone.Cicerone.Companion.create
-import com.github.terrakok.cicerone.Router
+import kaa.alisherbu.baxtsizlar.navigation.LocalCiceroneHolder
+import org.koin.core.qualifier.named
 import org.koin.dsl.module
 
 object Navigation {
-    private val cicerone: Cicerone<Router> = create()
     val module = module {
-        single { cicerone.router }
-        single { cicerone.getNavigatorHolder() }
+        single { LocalCiceroneHolder() }
+
+        single(named("outside")) {
+            get<LocalCiceroneHolder>().getCicerone("outside").getNavigatorHolder()
+        }
+
+        single(named("root")) {
+            get<LocalCiceroneHolder>().getCicerone("root").getNavigatorHolder()
+        }
+        single(named("main")) {
+            get<LocalCiceroneHolder>().getCicerone("main").getNavigatorHolder()
+        }
     }
 }

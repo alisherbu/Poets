@@ -7,20 +7,20 @@ import com.arkivanov.mvikotlin.core.view.ViewRenderer
 import kaa.alisherbu.baxtsizlar.databinding.FragmentPoetsBinding
 
 
-class PoetsView(root: View) : BaseMviView<List<Poet>, Event>() {
+class PoetsView(root: View) : BaseMviView<State, Intent>() {
     private val binding = FragmentPoetsBinding.bind(root)
     private val poetsAdapter = PoetsAdapter()
 
     init {
         binding.rvPoets.adapter = poetsAdapter
         poetsAdapter.setOnItemClickListener {
-            dispatch(Event.ItemClicked(it))
+            dispatch(Intent.ItemClicked(it))
         }
     }
 
-    override val renderer: ViewRenderer<List<Poet>>
+    override val renderer: ViewRenderer<State>
         get() = diff {
-            diff(get = List<Poet>::toList, compare = { a, b -> a === b }) {
+            diff(get = State::poets, compare = { a, b -> a === b }) {
                 poetsAdapter.models = it
             }
         }

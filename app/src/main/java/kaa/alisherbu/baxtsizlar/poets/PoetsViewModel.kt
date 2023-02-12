@@ -1,12 +1,9 @@
 package kaa.alisherbu.baxtsizlar.poets
 
 import android.util.Log
-import com.arkivanov.essenty.instancekeeper.InstanceKeeper
+import androidx.lifecycle.ViewModel
 import com.arkivanov.essenty.lifecycle.Lifecycle
-import com.arkivanov.essenty.lifecycle.doOnDestroy
 import com.arkivanov.mvikotlin.core.binder.BinderLifecycleMode
-import com.arkivanov.mvikotlin.core.instancekeeper.getStore
-import com.arkivanov.mvikotlin.core.store.StoreFactory
 import com.arkivanov.mvikotlin.extensions.coroutines.bind
 import com.arkivanov.mvikotlin.extensions.coroutines.events
 import com.arkivanov.mvikotlin.extensions.coroutines.labels
@@ -16,26 +13,11 @@ import kaa.alisherbu.baxtsizlar.Screen
 import kaa.alisherbu.baxtsizlar.navigation.LocalCiceroneHolder
 import kaa.alisherbu.baxtsizlar.navigation.RouterProvider
 
-class PoetsController(
+class PoetsViewModel(
+    private val poetsStore: PoetsStore,
     private val dispatchers: PoetDispatchers,
     private val localCiceroneHolder: LocalCiceroneHolder,
-    private val storeFactory: StoreFactory,
-    instanceKeeper: InstanceKeeper,
-    lifecycle: Lifecycle,
-) : RouterProvider {
-
-    private val poetsStore = instanceKeeper.getStore {
-        PoetsStoreFactory(
-            storeFactory,
-            dispatchers.main,
-            dispatchers.io
-        ).create()
-    }
-
-    init {
-        lifecycle.doOnDestroy { poetsStore.dispose() }
-    }
-
+) : ViewModel(), RouterProvider {
     private val cicerone = localCiceroneHolder.getCicerone("main")
     override val router: Router get() = cicerone.router
 
@@ -48,6 +30,11 @@ class PoetsController(
             poetsStore.states bindTo view
             poetsStore.labels.bindTo { view.handleLabel(it) }
         }
+    }
+
+    override fun onCleared() {
+        poetsStore.dispose()
+        super.onCleared()
     }
 
     private fun PoetsView.handleLabel(label: Label) {

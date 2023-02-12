@@ -5,8 +5,6 @@ import com.arkivanov.mvikotlin.core.store.SimpleBootstrapper
 import com.arkivanov.mvikotlin.core.store.Store
 import com.arkivanov.mvikotlin.core.store.StoreFactory
 import com.arkivanov.mvikotlin.extensions.coroutines.CoroutineExecutor
-import kaa.alisherbu.baxtsizlar.poets.PoetsStore.Intent
-import kaa.alisherbu.baxtsizlar.poets.PoetsStore.State
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import kotlin.coroutines.CoroutineContext
@@ -17,7 +15,7 @@ class PoetsStoreFactory(
     private val ioContext: CoroutineContext,
 ) {
     fun create(): PoetsStore =
-        object : PoetsStore, Store<Intent, State, Nothing> by storeFactory.create(
+        object : PoetsStore, Store<Intent, State, Label> by storeFactory.create(
             name = "PoetsStore",
             initialState = State(),
             bootstrapper = SimpleBootstrapper(Unit),
@@ -30,11 +28,17 @@ class PoetsStoreFactory(
     }
 
     private inner class ExecutorImpl :
-        CoroutineExecutor<Intent, Unit, State, Message, Nothing>(mainContext) {
+        CoroutineExecutor<Intent, Unit, State, Message, Label>(mainContext) {
         override fun executeAction(action: Unit, getState: () -> State) {
             scope.launch {
                 val poets = withContext(ioContext) { listOf(Poet(0, "A"), Poet(1, "B")) }
                 dispatch(Message.Loaded(poets))
+            }
+        }
+
+        override fun executeIntent(intent: Intent, getState: () -> State) {
+            when(intent){
+                is Intent.ItemClicked -> publish(Label.Navigated(intent.id))
             }
         }
     }

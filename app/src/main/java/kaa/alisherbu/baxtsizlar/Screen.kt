@@ -3,9 +3,11 @@
 package kaa.alisherbu.baxtsizlar
 
 import com.github.terrakok.cicerone.androidx.FragmentScreen
+import kaa.alisherbu.baxtsizlar.bio.BiographyFragment
 import kaa.alisherbu.baxtsizlar.favorites.FavoritesFragment
 import kaa.alisherbu.baxtsizlar.main.MainFragment
 import kaa.alisherbu.baxtsizlar.poets.PoetsFragment
+import kaa.alisherbu.baxtsizlar.root.RootFragment
 
 object Screen {
     fun Poets() = FragmentScreen {
@@ -20,7 +22,11 @@ object Screen {
         RootFragment()
     }
 
-    fun Favorites() = FragmentScreen{
+    fun Favorites() = FragmentScreen {
         FavoritesFragment()
+    }
+
+    fun Biography() = FragmentScreen {
+        BiographyFragment()
     }
 }

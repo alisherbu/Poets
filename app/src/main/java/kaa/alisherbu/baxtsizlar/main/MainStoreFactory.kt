@@ -14,33 +14,30 @@ class MainStoreFactory(
 ) {
 
     fun create(): MainStore = object : MainStore,
-        Store<MainStore.Intent, MainStore.State, Nothing> by storeFactory.create(
+        Store<Intent, State, Label> by storeFactory.create(
             name = "MainStore",
-            initialState = MainStore.State(false),
+            initialState = State(false),
             bootstrapper = SimpleBootstrapper(Unit),
             executorFactory = this::ExecutorImpl,
             reducer = ReducerImpl
         ) {}
 
 
-    private sealed interface Message {
-        class Changed(val isOpen: Boolean) : Message
-    }
+    private sealed interface Message
 
     private inner class ExecutorImpl :
-        CoroutineExecutor<MainStore.Intent, Unit, MainStore.State, Message, Nothing>(mainContext) {
-        override fun executeIntent(intent: MainStore.Intent, getState: () -> MainStore.State) {
+        CoroutineExecutor<Intent, Unit, State, Message, Label>(mainContext) {
+        override fun executeIntent(intent: Intent, getState: () -> State) {
             when (intent) {
-                MainStore.Intent.NavigationIconClicked -> dispatch(Message.Changed(!getState().isOpen))
+                is Intent.MenuItemClicked -> publish(Label.MenuItemClicked(intent.id))
+                Intent.NavigationIconClicked -> publish(Label.NavigationIconClicked)
             }
         }
     }
 
-    private object ReducerImpl : Reducer<MainStore.State, Message> {
-        override fun MainStore.State.reduce(msg: Message): MainStore.State {
-            return when (msg) {
-                is Message.Changed -> copy(isOpen = msg.isOpen)
-            }
+    private object ReducerImpl : Reducer<State, Message> {
+        override fun State.reduce(msg: Message): State {
+            return this
         }
 
     }
