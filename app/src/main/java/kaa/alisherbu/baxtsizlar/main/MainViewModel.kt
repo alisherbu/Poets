@@ -20,6 +20,7 @@ class MainViewModel(
 ) : ViewModel(), RouterProvider {
     private val cicerone get() = ciceroneHolder.getCicerone("main")
     override val router: Router get() = cicerone.router
+    private var lastSelectedMenuItemId = 0
 
     fun onViewCreated(view: MainView, viewLifecycle: Lifecycle) {
         bind(viewLifecycle, BinderLifecycleMode.CREATE_DESTROY, dispatchers.unconfined) {
@@ -40,10 +41,12 @@ class MainViewModel(
     }
 
     private fun selectMenuItem(id: Int) {
+        if (id == lastSelectedMenuItemId) return
         when (id) {
-            0 -> ciceroneHolder.getCicerone("main").router.replaceScreen(Screen.Poets())
-            1 -> ciceroneHolder.getCicerone("main").router.replaceScreen(Screen.Favorites())
+            0 -> router.replaceScreen(Screen.Poets())
+            1 -> router.replaceScreen(Screen.Favorites())
         }
+        lastSelectedMenuItemId = id
     }
 
     override fun onCleared() {

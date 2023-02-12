@@ -18,7 +18,7 @@ class PoetsViewModel(
     private val dispatchers: PoetDispatchers,
     private val localCiceroneHolder: LocalCiceroneHolder,
 ) : ViewModel(), RouterProvider {
-    private val cicerone = localCiceroneHolder.getCicerone("main")
+    private val cicerone = localCiceroneHolder.getCicerone("outside")
     override val router: Router get() = cicerone.router
 
     fun onViewCreated(view: PoetsView, viewLifecycle: Lifecycle) {
@@ -38,11 +38,8 @@ class PoetsViewModel(
     }
 
     private fun PoetsView.handleLabel(label: Label) {
-        Log.d("ViewModelLog", "handleLabel")
         when (label) {
-            is Label.Navigated -> localCiceroneHolder.getCicerone("outside").router.navigateTo(
-                Screen.Biography()
-            )
+            is Label.Navigated -> router.navigateTo(Screen.Biography())
         }
     }
 

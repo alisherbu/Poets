@@ -14,7 +14,7 @@ class PoetsFragment : Fragment(R.layout.fragment_poets), BackButtonListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val poetsListView = PoetsView(view)
-        viewModel.onViewCreated(poetsListView, essentyLifecycle())
+        viewModel.onViewCreated(poetsListView, viewLifecycleOwner.essentyLifecycle())
     }
 
     override fun onBackPressed(): Boolean {

@@ -16,7 +16,7 @@ class MainStoreFactory(
     fun create(): MainStore = object : MainStore,
         Store<Intent, State, Label> by storeFactory.create(
             name = "MainStore",
-            initialState = State(false),
+            initialState = State(),
             bootstrapper = SimpleBootstrapper(Unit),
             executorFactory = this::ExecutorImpl,
             reducer = ReducerImpl
